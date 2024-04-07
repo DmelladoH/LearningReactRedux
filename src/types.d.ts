@@ -4,6 +4,7 @@ interface User {
 	github: string;
 }
 
+type UserID = string;
 interface UserWithId extends User {
-	id: string;
+	id: UserID;
 }

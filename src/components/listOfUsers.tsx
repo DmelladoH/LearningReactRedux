@@ -6,8 +6,13 @@ import {
 	TableHeaderCell,
 	TableRow,
 } from "@tremor/react";
+import { useUsersActions } from "../hooks/useUsersActions";
+import EditSVG from "../svg/editSVG";
+import RemoveSVG from "../svg/removeSVG";
 
 function ListOfUsers({ users }: { users: UserWithId[] }) {
+	const { removeUser } = useUsersActions();
+
 	return (
 		<Table>
 			<TableHead>
@@ -36,7 +41,14 @@ function ListOfUsers({ users }: { users: UserWithId[] }) {
 							</TableCell>
 							<TableCell>{email}</TableCell>
 							<TableCell>{github}</TableCell>
-							<TableCell>Actions</TableCell>
+							<TableCell>
+								<button type="button">
+									<EditSVG />
+								</button>
+								<button type="button" onClick={() => removeUser(id)}>
+									<RemoveSVG />
+								</button>
+							</TableCell>
 						</TableRow>
 					);
 				})}

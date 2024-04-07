@@ -1,3 +1,4 @@
+import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: UserWithId[] = [
@@ -18,7 +19,12 @@ const initialState: UserWithId[] = [
 export const userSlice = createSlice({
 	name: "users",
 	initialState,
-	reducers: {},
+	reducers: {
+		delateUserById: (state, action: PayloadAction<UserID>) => {
+			return state.filter((user) => user.id !== action.payload);
+		},
+	},
 });
 
 export default userSlice.reducer;
+export const { delateUserById } = userSlice.actions;
